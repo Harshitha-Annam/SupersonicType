@@ -10,10 +10,10 @@
     background-color: rgba(250, 128, 128, 0.534);
 }
 span{
-    font-size: 32px;
+    font-size: 2rem;
 }
 textarea{
-    font-size: 32px;
+    font-size: 2rem;
     width: 100%;
     
 }
