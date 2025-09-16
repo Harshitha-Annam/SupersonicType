@@ -1,0 +1,38 @@
+*{
+    font-family: sans-serif;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+.right{
+    background-color: rgba(140, 236, 140, 0.527);
+}
+.wrong{
+    background-color: rgba(250, 128, 128, 0.534);
+}
+span{
+    font-size: 32px;
+}
+textarea{
+    font-size: 32px;
+    width: 100%;
+    
+}
+.header{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:orangered;
+}
+.content{
+    padding: 1rem;
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+p{
+    width: 100%;
+}
