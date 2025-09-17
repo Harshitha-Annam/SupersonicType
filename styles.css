@@ -36,3 +36,13 @@ textarea{
 p{
     width: 100%;
 }
+div.timer{
+    font-size: 2rem;
+    width: 10rem;
+    text-align: center;
+    /* color: white; */
+    padding: 1rem 1rem;
+    background-color: #44f14423;
+    border-radius:1rem;
+    margin: 2rem 4rem;
+}
