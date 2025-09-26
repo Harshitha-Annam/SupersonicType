@@ -21,7 +21,9 @@ for(let j = 0; j < numOfChars; j++)
 var i = 0;
 let rightChars = 0;
 let seconds = 0
-let timer;
+let timer = null;
+let timeStarted = false;
+let finished = false;
 function check(typedCharacter,i){
     // console.log(paragraph.charAt(i))
     let chartag = document.getElementsByClassName(`${i}`);
@@ -43,29 +45,53 @@ function check(typedCharacter,i){
     
 }
 
+function finishTest()
+{
+    let accuracy = document.querySelector('.accuracy');
+    let wpmspace = document.querySelector('.wpm');
+    // document.querySelector('body').append(accuracy)
+    finished = true;
+    if(timer) clearInterval(timer);
+    removeEventListener('keydown');
+    accuracy.textContent = `Typing Accuracy : ${((rightChars/numOfChars)* 100).toFixed(1)}%`;
+    clearInterval(timer);
+    wpmspace.textContent = ` Typing Speed :${((numOfChars/5)/(seconds/60)).toFixed(1)}wpm`;
+}
+
 typespace.addEventListener('keydown', (event) => {
-    if((event.keyCode >= 65 && event.keyCode <= 90) || event.keyCode == 32 || event.key === '.' || event.key === '?' || event.key === ';' || event.key === ':'||event.key === '"' || event.key === "'" || event.key === ','){
+    if(finished) return;
+    if((event.keyCode >= 65 && event.keyCode <= 90) || event.keyCode == 32 || event.key === '.' || event.key === '?' || event.key === ';' || event.key === ':'||event.key === '"' || event.key === "'" || event.key === ',' || event.key === 'Enter'){
         if(i === 0)
         {
-             timer = setInterval(() => {
-            let timerDiv = document.querySelector('.timer');
-            timerDiv.textContent = '';
-            timerDiv.textContent = `${++seconds}s`;
-            }, 1000);
+            if(!timeStarted)
+            {
+                timer = setInterval(() => {
+                let timerDiv = document.querySelector('.timer');
+                timerDiv.textContent = '';
+                timerDiv.textContent = `${++seconds}s`;
+                }, 1000);
+                timeStarted = true;
+            }
         }
-    let typedCharacter = event.key;
-    
-    console.log(typedCharacter);
-    // i = i + 1;
-    check(typedCharacter, i++);
-    }
+        let typedCharacter = event.key;
+        
+        console.log(typedCharacter);
+        // i = i + 1;
+        check(typedCharacter, i++);
+        if(i >= numOfChars && event.key === 'Enter')
+        {
+            finishTest();
+        }
+        }
     else if(event.key=== 'Backspace' )
     {
         if(i > 0) {
               i--;
-              rightChars--;
+              
             let chartag = document.getElementsByClassName(`${i}`);
-          
+            if (chartag[0].classList.contains('right')) {
+                rightChars = Math.max(0, rightChars - 1);
+            }
             chartag[0].classList.remove('right', 'wrong');
 
         }
@@ -73,15 +99,6 @@ typespace.addEventListener('keydown', (event) => {
         
         
     }
-    else if (i === length)
-{
-    let accuracy = document.querySelector('.accuracy');
-    let wpmspace = document.querySelector('.wpm');
-    // document.querySelector('body').append(accuracy)
-    accuracy.textContent = `Typing Accuracy : ${((rightChars/numOfChars)* 100).toFixed(1)}%`;
-    clearInterval(timer);
-    wpmspace.textContent = ` Typing Speed :${((numOfChars/5)/(seconds/60)).toFixed(1)}wpm`;
-
-}
+    
 })
 

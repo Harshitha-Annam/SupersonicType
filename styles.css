@@ -46,3 +46,12 @@ div.timer{
     border-radius:1rem;
     margin: 2rem 4rem;
 }
+
+.start-again{
+    padding: 0.5rem 1rem;
+    border:none;
+    background-color: rgb(153, 205, 50);
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
