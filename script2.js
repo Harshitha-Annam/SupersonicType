@@ -1,25 +1,8 @@
-let typespace = document.getElementById('type-space');
+import {paragraphs} from './data.js';
 
-let ptag = document.getElementById('paragraph');
-let paragraph = ptag.textContent;
-
-const paraLength = paragraph.length;
-
-const listOfCharacters = paragraph.split('');
-
-ptag.textContent ='';
-
-const numOfChars = listOfCharacters.length;
-let timer = null;
-for(let j = 0; j < numOfChars; j++)
-{
-    let span = document.createElement('span');
-    span.classList.add(`${j}`);
-    span.textContent= listOfCharacters[j];
-    ptag.append(span);
-}
 let lockIndex = 0;
 let lockedValue = '';
+let timer = null;
 let startAgain = document.querySelector('.start-again');
 console.log(startAgain)
 startAgain.addEventListener('click', () =>
@@ -33,6 +16,26 @@ startAgain.addEventListener('click', () =>
 
 function startTyping()
 {
+    let typespace = document.getElementById('type-space');
+
+let ptag = document.getElementById('paragraph');
+let paragraph = paragraphs[Math.ceil(Math.random()*(paragraphs.length))];
+
+const paraLength = paragraph.length;
+
+const listOfCharacters = paragraph.split('');
+
+ptag.textContent ='';
+
+const numOfChars = listOfCharacters.length;
+
+for(let j = 0; j < numOfChars; j++)
+{
+    let span = document.createElement('span');
+    span.classList.add(`${j}`);
+    span.textContent= listOfCharacters[j];
+    ptag.append(span);
+}
 let isStarted = false;
 
 let seconds = 0;
