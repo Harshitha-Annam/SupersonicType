@@ -3,7 +3,24 @@ import {paragraphs} from './data.js';
 let lockIndex = 0;
 let lockedValue = '';
 let timer = null;
+let typespace;
+let paragraph;
+let ptag;
+let paraLength;
+let listOfCharacters;
+let numOfChars;
+let isStarted = false;
+let seconds = 0;
+let minutes = 0;
+let wrongChars = 0;
+let timerDiv = document.querySelector('.timer');
 let startAgain = document.querySelector('.start-again');
+let accuracy = document.querySelector('.accuracy');
+let wpmspace = document.querySelector('.wpm');
+let index = 0;
+let typedText;
+let typedChars;
+let last_index_el;
 console.log(startAgain)
 startAgain.addEventListener('click', () =>
   {
@@ -16,18 +33,18 @@ startAgain.addEventListener('click', () =>
 
 function startTyping()
 {
-    let typespace = document.getElementById('type-space');
+     typespace = document.getElementById('type-space');
 
-let ptag = document.getElementById('paragraph');
-let paragraph = paragraphs[Math.ceil(Math.random()*(paragraphs.length))];
+ ptag = document.getElementById('paragraph');
+ paragraph =ptag.textContent;
 
-const paraLength = paragraph.length;
+ paraLength = paragraph.length;
 
-const listOfCharacters = paragraph.split('');
+ listOfCharacters = paragraph.split('');
 
 ptag.textContent ='';
 
-const numOfChars = listOfCharacters.length;
+ numOfChars = listOfCharacters.length;
 
 for(let j = 0; j < numOfChars; j++)
 {
@@ -36,11 +53,11 @@ for(let j = 0; j < numOfChars; j++)
     span.textContent= listOfCharacters[j];
     ptag.append(span);
 }
-let isStarted = false;
+isStarted = false;
 
-let seconds = 0;
-let minutes = 0;
-let wrongChars = 0;
+ seconds = 0;
+ minutes = 0;
+ wrongChars = 0;
 // let totalChars = 0;
 listOfCharacters.forEach((char, idx) => {
         
@@ -52,10 +69,9 @@ listOfCharacters.forEach((char, idx) => {
 typespace.value = '';
 lockIndex = 0;
 lockedValue = '';
-let timerDiv = document.querySelector('.timer');
+
 timerDiv.textContent = '00:00';
-let accuracy = document.querySelector('.accuracy');
-let wpmspace = document.querySelector('.wpm');
+
 accuracy.textContent='';
 wpmspace.textContent = '';
 typespace.disabled = false;
@@ -64,7 +80,8 @@ if(timer)
 {
     clearInterval(timer);
 }
-let index = 0;
+ index = 0;
+// typespace.removeEventListener('input');
 typespace.addEventListener('input', (event) => {
     if( lockIndex > typespace.value.length-1)
     {
@@ -72,6 +89,7 @@ typespace.addEventListener('input', (event) => {
     }
     if(!isStarted)
     {
+        clearInterval(timer);
         isStarted = true;
         timer = setInterval(() => {
             
@@ -110,27 +128,22 @@ typespace.addEventListener('input', (event) => {
 
     }
     
-    let typedText = typespace.value;
+   typedText = typespace.value;
     // console.log(typedText)
-    let typedChars = typedText.split('');
-    let last_index_el = typedChars.at(-1);
+   typedChars = typedText.split('');
+   last_index_el = typedChars.at(-1);
     index = typedChars.length-1;
     if(isStarted && (index >= paraLength-1) )
     {
         clearInterval(timer);
-        // console.log(typespace);
+        console.log(typespace);
         typespace.disabled = true;
         // event.preventDefault()
-        
+        console.log(numOfChars, seconds, minutes, wrongChars)
         wpmspace.textContent = ` Typing Speed :${((numOfChars/5)/(seconds/60 + minutes)).toFixed(1)}wpm`;
         accuracy.textContent = `Typing Accuracy : ${(100-((wrongChars/numOfChars)* 100)).toFixed(1)}%`;
         console.log(wrongChars);
         console.log(numOfChars);
-        
-        
-
-
-
     }
     listOfCharacters.forEach((char, idx) => {
         if(idx > index)
