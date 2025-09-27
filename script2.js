@@ -39,11 +39,18 @@ let seconds = 0;
 let minutes = 0;
 let wrongChars = 0;
 // let totalChars = 0;
+listOfCharacters.forEach((char, idx) => {
+        
+        
+            // console.log(document.getElementsByClassName(idx)[0]);
+            document.getElementsByClassName(idx)[0].classList.remove('right', 'wrong');
+        
+    });
 typespace.value = '';
 lockIndex = 0;
 lockedValue = '';
 let timerDiv = document.querySelector('.timer');
-timerDiv.textContent = '';
+timerDiv.textContent = '00:00';
 let accuracy = document.querySelector('.accuracy');
 let wpmspace = document.querySelector('.wpm');
 accuracy.textContent='';

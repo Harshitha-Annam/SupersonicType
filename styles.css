@@ -1,57 +1,104 @@
-*{
+
+body{
+
+    width:100vw;
+    /* max-width: 1200px; */
     font-family: sans-serif;
     overflow-x: hidden;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    border: 1px solid white;
+    font-size: 1.5rem;
+    padding: 1rem;
+    background-color: rgb(52, 51, 51);
+    color: rgba(255, 255, 255, 0.596);
+}
+.container{
+    /* margin: 0.5rem; */
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    padding:1rem;
+    text-align: justify;
 }
 .right{
-    background-color: rgba(140, 236, 140, 0.527);
+    background-color: rgba(103, 236, 103, 0.804);
 }
 .wrong{
-    background-color: rgba(250, 128, 128, 0.534);
+    background-color: rgba(241, 108, 108, 0.84);
 }
-span{
-    font-size: 2rem;
+
+
+.header{
+    width:100%;
+    /* border: 1px solid white; */
+    
+    color:rgb(0, 157, 255);
 }
-textarea{
+.header h1{
+    /* border: 1px solid white; */
     font-size: 2rem;
-    width: 100%;
+    float: left;
+}
+textarea
+{
+    padding:2rem;
+    font-size: 1.5rem;
+    color:rgba(255, 255, 255, 0.61);
+    width:100%;
+    height:300px;
+    border:2px solid rgba(139, 136, 136, 0.459);
+    background-color: rgb(52, 51, 51);
+    border-radius: 1rem;
+}
+textarea:focus{
+    outline: none;
     
 }
-.header{
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color:orangered;
-}
 .content{
-    padding: 1rem;
+    /* padding: 1rem; */
     /* border: 1px solid red; */
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-p{
-    width: 100%;
-}
+
 div.timer{
-    font-size: 2rem;
+    font-size: 1.5rem;
     width: 10rem;
     text-align: center;
     /* color: white; */
     padding: 1rem 1rem;
-    background-color: #44f14423;
+    background-color: #3ff83f96;
     border-radius:1rem;
-    margin: 2rem 4rem;
+    /* margin: 1rem 2rem; */
+   
+    color: white;
+    margin-top:auto;
+    font-weight: 700;
 }
-
+.timer-start-again{
+    width: 100%;
+    /* border: 1px solid white; */
+    margin:2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
 .start-again{
-    padding: 0.5rem 1rem;
+    padding: 1rem 1rem;
     border:none;
     background-color: rgb(153, 205, 50);
     border-radius: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    color: white;
     font-weight: 700;
+    float: right;
+    margin-top:auto;
 }
